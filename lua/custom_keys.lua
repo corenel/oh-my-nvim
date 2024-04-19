@@ -17,13 +17,13 @@ return {
 
 	-- View other usage of the plugin: https://github.com/nvim-neo-tree/neo-tree.nvim
 	-- Use the shortcut to open or close file explorer.
-	file_explorer = "<F9>",
+	file_explorer = "\\e",
 	-- Use the shortcut to open or close git status on a float window.
-	git_status = "<F8>",
+	git_status = "<leader>gs",
 
 	-- View other usage of the plugin: https://github.com/stevearc/aerial.nvim
 	-- Use the shortcut to open or close the outline, it need to call the lsp server.
-	outline = "<F7>",
+	outline = "<leader>sf",
 
 	-- View other usage of the plugin: https://github.com/akinsho/toggleterm.nvim
 	-- Use the shortcut to open or close the terminal.
@@ -36,7 +36,7 @@ return {
 
 	-- View other usage of the plugin: https://github.com/nvim-telescope/telescope.nvim
 	-- Use the shortcut to find, search files and find buffers.
-	find_files = "<leader>ff",
+	find_files = "<leader>gf",
 	live_grep = "<leader>gg",
 	search_cursor = "<leader>cc",
 	find_buffer = "<leader>bb",
@@ -66,5 +66,25 @@ return {
 	-- Use the shortcut to rename the code symbols.
 	lsp_rename = "<leader>re",
 	-- Use the shortcut to format your codes.
-	format = "<leader>ft",
+	format = "\\f",
+
+	-- Go to tabs
+	new_tab = "\\t",
+	next_tab = "<C-b>",
+	prev_tab = "<C-f>",
+
+	-- New line
+	new_line_above = "<S-CR>",
+	new_line_below = "<CR>",
+
+	-- Operations
+	exit_insert_mode = "jk",
+	cursor_home = "<C-a>",
+	cursor_end = "<C-e>",
+	cursor_left = "<C-b>",
+	cursor_right = "<C-f>",
+	cursor_delete = "<C-d>",
+
+	-- Other
+	toggle_highlight = "\\h",
 }

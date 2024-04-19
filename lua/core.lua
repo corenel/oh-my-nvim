@@ -133,6 +133,26 @@ local function set_keymap()
 
 	-- Supported by nvim-session-manager
 	map("n", keys.switch_session, ":SessionManager load_session<CR>", option)
+
+	-- Normal mode mappings
+	vim.api.nvim_set_keymap('n', keys.new_tab, ':tabnew<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', keys.toggle_highlight, ':nohlsearch<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', keys.next_tab, ':tabnext<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', keys.prev_tab, ':tabprev<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', keys.new_line_above, 'O<Esc>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', keys.new_line_below, 'o<Esc>', { noremap = true, silent = true })
+
+	-- Insert mode mappings
+	vim.api.nvim_set_keymap('i', keys.exit_insert_mode, '<Esc>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('i', keys.cursor_end, '<C-o>$', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('i', keys.cursor_home, '<C-o>0', { noremap = true, silent = true })
+
+	-- Command-line mode mappings
+	vim.api.nvim_set_keymap('c', keys.cursor_home, '<Home>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('c', keys.cursor_end, '<End>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('c', keys.cursor_left, '<Left>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('c', keys.cursor_right, '<Right>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('c', keys.cursor_delete, '<Del>', { noremap = true, silent = true })
 end
 
 -- Set up transparency
