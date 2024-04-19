@@ -146,6 +146,9 @@ local function set_keymap()
 	vim.api.nvim_set_keymap('i', keys.exit_insert_mode, '<Esc>', { noremap = true, silent = true })
 	vim.api.nvim_set_keymap('i', keys.cursor_end, '<C-o>$', { noremap = true, silent = true })
 	vim.api.nvim_set_keymap('i', keys.cursor_home, '<C-o>0', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('i', keys.cursor_left, '<Left>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('i', keys.cursor_right, '<Right>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('i', keys.cursor_delete, '<Del>', { noremap = true, silent = true })
 
 	-- Command-line mode mappings
 	vim.api.nvim_set_keymap('c', keys.cursor_home, '<Home>', { noremap = true, silent = true })
