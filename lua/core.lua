@@ -157,6 +157,9 @@ local function set_keymap()
 	vim.api.nvim_set_keymap('c', keys.cursor_left, '<Left>', { noremap = true, silent = true })
 	vim.api.nvim_set_keymap('c', keys.cursor_right, '<Right>', { noremap = true, silent = true })
 	vim.api.nvim_set_keymap('c', keys.cursor_delete, '<Del>', { noremap = true, silent = true })
+
+	-- Clipboard
+	vim.opt.clipboard = "unnamed,unnamedplus"
 end
 
 -- Set up transparency
