@@ -141,6 +141,7 @@ local function set_keymap()
 	vim.api.nvim_set_keymap('n', keys.prev_tab, ':tabprev<CR>', { noremap = true, silent = true })
 	vim.api.nvim_set_keymap('n', keys.new_line_above, 'O<Esc>', { noremap = true, silent = true })
 	vim.api.nvim_set_keymap('n', keys.new_line_below, 'o<Esc>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', ";", ":", { noremap = true, silent = true })
 
 	-- Insert mode mappings
 	vim.api.nvim_set_keymap('i', keys.exit_insert_mode, '<Esc>', { noremap = true, silent = true })
