@@ -67,6 +67,11 @@ return {
 			require("aerial").setup({
 				lazy_load = false,
 				open_automatic = require("custom_opts").auto_open_outline,
+				layout = {
+					max_width = 0.15,
+					min_width = 17,
+				},
+				filter_kind = false,
 			})
 		end,
 	},
