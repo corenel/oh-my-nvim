@@ -45,3 +45,4 @@ lazy-lock.json
 !lua/my_plugins/example.lua
 package-lock.json
 
+.avante_chat_history
