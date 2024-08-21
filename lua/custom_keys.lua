@@ -66,7 +66,6 @@ return {
 	-- Use the shortcut to rename the code symbols.
 	lsp_rename = "<leader>re",
 	-- Use the shortcut to format your codes.
-<<<<<<< HEAD
 	format = "\\f",
 
 	-- Go to tabs
@@ -88,5 +87,4 @@ return {
 
 	-- Other
 	toggle_highlight = "\\h",
-	format = "<leader>vv",
 }
