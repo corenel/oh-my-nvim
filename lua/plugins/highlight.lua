@@ -15,11 +15,16 @@ return {
 
 				highlight = {
 					enable = true,
-					disable = {},
 					disable = function(lang, buf)
 						local max_filesize = 100 * 1024 -- 100 KB
 						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 						if ok and stats and stats.size > max_filesize then
+							return true
+						end
+						-- a workaround for the error reported in the current version (0b8b78f)
+						-- Error in decoration provider treesitter/highlighter.win:
+                        -- Error executing lua: ...2829/usr/share/nvim/runtime/lua/vim/treesitter/query.lua:252: Query error at 1:3. Invalid node type "comment"
+						if lang == "gitcommit" then
 							return true
 						end
 					end,
