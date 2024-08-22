@@ -85,6 +85,13 @@ return {
 	cursor_right = "<C-f>",
 	cursor_delete = "<C-d>",
 
+	-- Trouble
+	list_errors = "<leader>el",
+	list_workspace_errors = "<leader>eL",
+	next_error = "<leader>en",
+	prev_error = "<leader>ep",
+	fix_error = "<leader>ef",
+
 	-- Other
 	toggle_highlight = "\\h",
 }

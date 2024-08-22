@@ -1,5 +1,10 @@
 return {
 	{
+		"sheerun/vim-polyglot",
+		enabled = false,
+		event = { "BufRead" },
+	},
+	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		build = ":Copilot auth",

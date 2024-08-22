@@ -135,28 +135,64 @@ local function set_keymap()
 	map("n", keys.switch_session, ":SessionManager load_session<CR>", option)
 
 	-- Normal mode mappings
-	vim.api.nvim_set_keymap('n', keys.new_tab, ':tabnew<CR>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('n', keys.toggle_highlight, ':nohlsearch<CR>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('n', keys.next_tab, ':tabnext<CR>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('n', keys.prev_tab, ':tabprev<CR>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('n', keys.new_line_above, 'O<Esc>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('n', keys.new_line_below, 'o<Esc>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('n', ";", ":", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", keys.new_tab, ":tabnew<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", keys.toggle_highlight, ":nohlsearch<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", keys.next_tab, ":tabnext<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", keys.prev_tab, ":tabprev<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", keys.new_line_above, "O<Esc>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", keys.new_line_below, "o<Esc>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", ";", ":", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap(
+		"n",
+		keys.next_error,
+		":Lspsaga diagnostic_jump_next<CR>",
+		{ noremap = true, silent = true }
+	)
+	vim.api.nvim_set_keymap(
+		"n",
+		keys.prev_error,
+		":Lspsaga diagnostic_jump_prev<CR>",
+		{ noremap = true, silent = true }
+	)
+	vim.api.nvim_set_keymap(
+		"n",
+		keys.fix_error,
+		":lua vim.lsp.buf.code_action()<CR>",
+		{ noremap = true, silent = true }
+	)
+
+	function _list_errors_toggle()
+		require("trouble").toggle({
+			mode = "diagnostics",
+			focus = true,
+			filter = {
+				buf = 0,
+			},
+		})
+	end
+	function _list_workspace_errors_toggle()
+		require("trouble").toggle({
+			mode = "diagnostics",
+			focus = true,
+		})
+	end
+	map("n", keys.list_errors, ":lua _list_errors_toggle()<CR>", option)
+	map("n", keys.list_workspace_errors, ":lua _list_workspace_errors_toggle()<CR>", option)
 
 	-- Insert mode mappings
-	vim.api.nvim_set_keymap('i', keys.exit_insert_mode, '<Esc>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('i', keys.cursor_end, '<C-o>$', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('i', keys.cursor_home, '<C-o>0', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('i', keys.cursor_left, '<Left>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('i', keys.cursor_right, '<Right>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('i', keys.cursor_delete, '<Del>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("i", keys.exit_insert_mode, "<Esc>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("i", keys.cursor_end, "<C-o>$", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("i", keys.cursor_home, "<C-o>0", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("i", keys.cursor_left, "<Left>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("i", keys.cursor_right, "<Right>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("i", keys.cursor_delete, "<Del>", { noremap = true, silent = true })
 
 	-- Command-line mode mappings
-	vim.api.nvim_set_keymap('c', keys.cursor_home, '<Home>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('c', keys.cursor_end, '<End>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('c', keys.cursor_left, '<Left>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('c', keys.cursor_right, '<Right>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('c', keys.cursor_delete, '<Del>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("c", keys.cursor_home, "<Home>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("c", keys.cursor_end, "<End>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("c", keys.cursor_left, "<Left>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("c", keys.cursor_right, "<Right>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("c", keys.cursor_delete, "<Del>", { noremap = true, silent = true })
 
 	-- Clipboard
 	vim.opt.clipboard = "unnamed,unnamedplus"
