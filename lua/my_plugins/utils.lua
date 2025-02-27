@@ -36,4 +36,19 @@ return {
 			numb.setup()
 		end,
 	},
+	{
+		"rmagatti/auto-session",
+		dependencies = { "ecthelionvi/NeoView.nvim" },
+		lazy = false,
+		---enables autocomplete for opts
+		---@module "auto-session"
+		---@type AutoSession.Config
+		opts = {
+			suppressed_dirs = { "~/", "~/Downloads", "/" },
+			args_allow_files_auto_save = false,
+			pre_save_cmds = {
+				"NeoViewSaveAll",
+			},
+		},
+	},
 }
