@@ -27,51 +27,32 @@ return {
 		opts = {
 			-- add any opts here
 			-- provider = "openai",
-			-- provider = "copilot",
 			provider = "deepseek",
 			openai = {
 				endpoint = "https://burn.hair/v1",
 				model = "gpt-4o",
-				-- endpoint = "https://openrouter.ai/api/v1",
-				-- model = "anthropic/claude-3.5-sonnet",
-				-- model = "openai/gpt-4o-2024-08-06",
 			},
 			vendors = {
-				---@type AvanteProvider
 				deepseek = {
-					["local"] = false,
+					__inherited_from = "openai",
+					api_key_name = "DEEPSEEK_API_KEY",
 					endpoint = "https://api.deepseek.com",
 					model = "deepseek-chat",
-					api_key_name = "DEEPSEEK_API_KEY",
-					parse_curl_args = function(opts, code_opts)
-						return {
-							url = opts.endpoint .. "/chat/completions",
-							headers = {
-								["Accept"] = "application/json",
-								["Content-Type"] = "application/json",
-								["Authorization"] = "Bearer " .. opts.parse_api_key(),
-							},
-							body = {
-								model = opts.model,
-								messages = require("avante.providers").copilot.parse_message(code_opts), -- you can make your own message, but this is very advanced
-								max_tokens = 4096,
-								stream = true,
-							},
-						}
-					end,
-					parse_response_data = function(data_stream, event_state, opts)
-						require("avante.providers").openai.parse_response(data_stream, event_state, opts)
-					end,
 				},
 			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make BUILD_FROM_SOURCE=true",
+		build = "make",
 		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
 			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
 			{
