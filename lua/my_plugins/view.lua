@@ -31,11 +31,11 @@ return {
 		enabled = false,
 		event = { "BufRead" },
 	},
-	{
-		"RRethy/vim-illuminate",
-		enabled = true,
-		event = { "BufRead" },
-	},
+	-- {
+	-- 	"RRethy/vim-illuminate",
+	-- 	enabled = true,
+	-- 	event = { "BufRead" },
+	-- },
 	{
 		"petertriho/nvim-scrollbar",
 		enabled = true,
