@@ -2,13 +2,16 @@ return {
 	-- Syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
+		lazy = false,
+		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				indent = {
 					enable = true,
 					disable = {},
 				},
-				ensure_installed = { "markdown", "markdown_inline", "regex" },
+				ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "regex" },
 				sync_install = false,
 				auto_install = true,
 				ignore_install = {},

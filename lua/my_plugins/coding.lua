@@ -28,11 +28,11 @@ return {
 			-- add any opts here
 			-- provider = "openai",
 			provider = "deepseek",
-			openai = {
-				endpoint = "https://burn.hair/v1",
-				model = "gpt-4o",
-			},
-			vendors = {
+			providers = {
+				openai = {
+					endpoint = "https://burn.hair/v1",
+					model = "gpt-4o",
+				},
 				deepseek = {
 					__inherited_from = "openai",
 					api_key_name = "DEEPSEEK_API_KEY",
