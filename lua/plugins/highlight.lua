@@ -2,41 +2,55 @@ return {
 	-- Syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
-		branch = "master",
+		branch = "main",
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				indent = {
-					enable = true,
-					disable = {},
-				},
-				ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "regex" },
-				sync_install = false,
-				auto_install = true,
-				ignore_install = {},
+			local ts = require("nvim-treesitter")
 
-				highlight = {
-					enable = true,
-					disable = function(lang, buf)
-						local max_filesize = 100 * 1024 -- 100 KB
-						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
-						-- a workaround for the error reported in the current version (0b8b78f)
-						-- Error in decoration provider treesitter/highlighter.win:
-                        -- Error executing lua: ...2829/usr/share/nvim/runtime/lua/vim/treesitter/query.lua:252: Query error at 1:3. Invalid node type "comment"
-						if lang == "gitcommit" then
-							return true
-						end
-					end,
-					additional_vim_regex_highlighting = false,
-				},
+			local parsers = {
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+				"markdown",
+				"markdown_inline",
+				"regex",
+			}
+
+			ts.setup()
+			ts.install(parsers)
+
+			-- Keep your existing mdx mapping.
+			vim.treesitter.language.register("markdown", "mdx")
+
+			local group = vim.api.nvim_create_augroup("user-treesitter", { clear = true })
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = group,
+				pattern = "*",
+				callback = function(args)
+					local max_filesize = 100 * 1024
+					local name = vim.api.nvim_buf_get_name(args.buf)
+					local ok, stats = pcall(vim.uv.fs_stat, name)
+
+					if ok and stats and stats.size > max_filesize then
+						return
+					end
+
+					if vim.bo[args.buf].filetype == "gitcommit" then
+						return
+					end
+
+					local started = pcall(vim.treesitter.start, args.buf)
+
+					-- Optional equivalent-ish replacement for your old indent.enable = true.
+					-- Remove this if TS indentation feels weird in some filetypes.
+					if started then
+						vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
 			})
-
-			-- let it to use 'markdown' parser for mdx filetype.
-			vim.treesitter.language.register('markdown', 'mdx')
 		end,
 	},
 
