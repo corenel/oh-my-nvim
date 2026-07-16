@@ -6,10 +6,14 @@ local function set_keymap()
 	local map = vim.keymap.set
 	local option = { noremap = true, silent = true }
 
-	map("n", keys.jump_left_window, "<C-W>h", option)
-	map("n", keys.jump_down_window, "<C-W>j", option)
-	map("n", keys.jump_up_window, "<C-W>k", option)
-	map("n", keys.jump_right_window, "<C-W>l", option)
+	-- map("n", keys.jump_left_window, "<C-W>h", option)
+	-- map("n", keys.jump_down_window, "<C-W>j", option)
+	-- map("n", keys.jump_up_window, "<C-W>k", option)
+	-- map("n", keys.jump_right_window, "<C-W>l", option)
+	map("n", keys.jump_left_window, "<Cmd>TmuxNavigateLeft<CR>", option)
+	map("n", keys.jump_down_window, "<Cmd>TmuxNavigateDown<CR>", option)
+	map("n", keys.jump_up_window, "<Cmd>TmuxNavigateUp<CR>", option)
+	map("n", keys.jump_right_window, "<Cmd>TmuxNavigateRight<CR>", option)
 
 	vim.cmd([[
     " press esc to cancel search highlight
@@ -87,28 +91,32 @@ local function set_keymap()
 				term.bufnr,
 				"t",
 				"<C-h>",
-				[[<Cmd>wincmd h<CR>]],
+				-- [[<Cmd>wincmd h<CR>]],
+				[[<Cmd>TmuxNavigateLeft<CR>]],
 				{ noremap = true, silent = true }
 			)
 			vim.api.nvim_buf_set_keymap(
 				term.bufnr,
 				"t",
 				"<C-j>",
-				[[<Cmd>wincmd j<CR>]],
+				-- [[<Cmd>wincmd j<CR>]],
+				[[<Cmd>TmuxNavigateDown<CR>]],
 				{ noremap = true, silent = true }
 			)
 			vim.api.nvim_buf_set_keymap(
 				term.bufnr,
 				"t",
 				"<C-k>",
-				[[<Cmd>wincmd k<CR>]],
+				-- [[<Cmd>wincmd k<CR>]],
+				[[<Cmd>TmuxNavigateUp<CR>]],
 				{ noremap = true, silent = true }
 			)
 			vim.api.nvim_buf_set_keymap(
 				term.bufnr,
 				"t",
 				"<C-l>",
-				[[<Cmd>wincmd l<CR>]],
+				-- [[<Cmd>wincmd l<CR>]],
+				[[<Cmd>TmuxNavigateRight<CR>]],
 				{ noremap = true, silent = true }
 			)
 			vim.cmd("startinsert!")
