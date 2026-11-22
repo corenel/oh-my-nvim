@@ -21,7 +21,7 @@ return {
 				"InsertLeave",
 
 				-- include this if you have set `show_modified` to `true`
-				"BufModifiedSet",
+				-- "BufModifiedSet",
 			}, {
 				group = vim.api.nvim_create_augroup("barbecue.updater", {}),
 				callback = function()
@@ -43,7 +43,7 @@ return {
 	-- File explorer
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
+		-- branch = "v2.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended

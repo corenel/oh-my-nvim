@@ -38,6 +38,7 @@ return {
 	-- },
 	{
 		"petertriho/nvim-scrollbar",
+		branch = "v1",
 		enabled = true,
 		dependencies = {
 			{
